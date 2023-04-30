@@ -11,11 +11,16 @@ function genslug(url){ // => str / false
         const m = url.match(re);
         if(m[1]){
             const str = m[1];
-            const len = str.length;
-            const front = str.substring(0,len-6);
-            const c1 = str.substring(len-6,len-3);
-            const c2 = str.substring(len-3);
-            return front + "/" + c1 + "/" + c2;
+            if(str.length <= 6){
+                const front = str.substring(0,3);
+                const c1 = str.substring(3);
+                return front + "/" + c1;
+            }else{
+                const front = str.substring(0,3);
+                const c1 = str.substring(3,6);
+                const c2 = str.substring(6);
+                return front + "/" + c1 + "/" + c2;
+            }
         }else{
             return false;
         }
